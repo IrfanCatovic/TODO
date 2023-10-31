@@ -53,13 +53,6 @@ function App() {
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
-const skillArray = skills;
-<div>
-  {skillArray.map((skill) => (
-    <SkillList skillObj={skill} />
-  ))}
-</div>;
-
 function Avatar() {
   return <img className="avatar" src="profil.jpg" alt="Irfan profilna" />;
 }
@@ -86,19 +79,27 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list" color="#123456">
-      <Skill skill="React" emoji="☝" color="orangered" />
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
+
+      {/* <Skill skill="React" emoji="☝" color="orangered" />
       <Skill skill="HTML+CSS" emoji="☝" color="yellow" />
       <Skill skill="Video editor" emoji="👶" color="red" />
-      <Skill skill="JavaScript" emoji="💪" color="green" />
+      <Skill skill="JavaScript" emoji="💪" color="green" /> */}
     </div>
   );
 }
 
-function Skill(props) {
+function Skill({ skill, color, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skill}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "☝"}
+        {level === "advanced" && "💪"}
+      </span>
     </div>
   );
 }
