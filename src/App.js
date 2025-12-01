@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { TdProvider }  from "./context/tdcontext";
 import Homepage from "./Pages/Homepage";
 import Todo from "./Pages/Todo";
+import ToDoItem from "./Components/ToDoItem";
 
 
 export default function App(){
