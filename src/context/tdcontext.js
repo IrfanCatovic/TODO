@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import { createContext, useCallback, useContext, useReducer } from "react";
 
 
@@ -33,9 +34,8 @@ const initialState ={
                     currentTask: {}
                 };  
 
-
-                    default:
-                        throw new Error("Unknown action type");
+                default:
+                throw new Error("Unknown action type");
                     
         } 
     }
@@ -44,6 +44,11 @@ const initialState ={
 
     function TdProvider({ children}) {
         const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
+
+
+        function deleteTodo(id){
+            dispatch({type: "Delete_TODO", payload: id})
+        }
 
         function addTodo(todo){
             dispatch({ type: "ADD_TODO", payload: todo });
@@ -60,7 +65,7 @@ const initialState ={
             },[currentTask.id])
 
         //exportujemo tdprovider da bismo mogli da obavijemo app.js
-        return <tdcontext.Provider value={{todos, getTask, addTodo, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
+        return <tdcontext.Provider value={{todos, getTask, addTodo, deleteTodo, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
     }
 
   function useTd(){

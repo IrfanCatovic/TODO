@@ -3,7 +3,7 @@ import { useTd } from "../context/tdcontext"
 import AddTask from "./AddTask"
 
 export default function Main(){
-    const {todos} = useTd()
+    const {todos, deleteTodo} = useTd()
 
 
 
@@ -15,7 +15,9 @@ export default function Main(){
                         
                         <Link to ={`/todo/${todo.id}`}> 
                         {todo.title} {todo.completed ? "(Completed)" : "(Pending)"}
+                        
                         </Link>
+                        <button onClick={()=> deleteTodo(todo.id)}>X</button>
                     </li>
                 ))}
             </ul>

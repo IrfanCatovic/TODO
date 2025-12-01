@@ -18,6 +18,7 @@ export default function ToDoItem() {
     return (
         <div>
             <h2>{currentTask.title}</h2><p>Status {currentTask.completed ? "Completed" : "Pending"}</p>
+            
             <button onClick={() => navigate(-1)}>Go Back</button>          
         </div>
     )
