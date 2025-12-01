@@ -45,6 +45,10 @@ const initialState ={
     function TdProvider({ children}) {
         const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
 
+        function addTodo(todo){
+            dispatch({ type: "ADD_TODO", payload: todo });
+        }
+
             const getTask = useCallback( 
                 async function getTask(id){
                 const task = todos.find(todo => todo.id === Number(id));
@@ -56,10 +60,8 @@ const initialState ={
             },[currentTask.id])
 
         //exportujemo tdprovider da bismo mogli da obavijemo app.js
-        return <tdcontext.Provider value={{todos, getTask, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
-
-
-  }
+        return <tdcontext.Provider value={{todos, getTask, addTodo, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
+    }
 
   function useTd(){
     const context = useContext(tdcontext)

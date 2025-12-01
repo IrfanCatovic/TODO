@@ -17,7 +17,7 @@ export default function App(){
 
             <Route path="todo" element={<Todo />}/>
             <Route path="todo/:id" element={<ToDoItem />}/>
-            {/* TODO ITEM JOS NIJE NAPRAVALJEN TREBA KADA KLIKNEMO NA ITEM Iz LISTE DA NAS POVEDE NA TAJ URL I PRIKAZE DETALJE O ITEMU */}
+           
             
             
         </Routes>
