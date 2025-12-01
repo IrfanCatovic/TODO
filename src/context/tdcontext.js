@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 
 
 const tdcontext = createContext();
@@ -44,8 +44,19 @@ const initialState ={
 
     function TdProvider({ children}) {
         const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
+
+            const getTask = useCallback( 
+                async function getTask(id){
+                const task = todos.find(todo => todo.id === Number(id));
+                if (task) {
+                    dispatch({ type: "Get_TODO", payload: task });
+                } else {
+                    dispatch({ type: "Get_TODO", payload: {} });
+                }
+            },[currentTask.id])
+
         //exportujemo tdprovider da bismo mogli da obavijemo app.js
-        return <tdcontext.Provider value={{todos, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
+        return <tdcontext.Provider value={{todos, getTask, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
 
 
   }
