@@ -13,6 +13,7 @@ const initialState ={
      error:""
 }
 
+    //u reduceru definisemo akcije koje cemo koristiti za menjanje state
     function reducer(state, action){
         switch(action.type){
 
@@ -43,6 +44,7 @@ const initialState ={
 
     function TdProvider({ children}) {
         const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
+        //exportujemo tdprovider da bismo mogli da obavijemo app.js
         return <tdcontext.Provider value={{todos, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
 
 
@@ -55,6 +57,10 @@ const initialState ={
   return context;
   }
 
+  //umesto useTd moze i ovako:
+  // export useContext(tdcontext)
+  //ali svaki put kada koristimo moramo importovati useContext i tdcontext, dok ovako samo useTd
+  //i kada ga pisemo npr const {todos} = useContext(tdcontext)
   export {TdProvider, useTd}
 
   
