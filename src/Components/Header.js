@@ -1,3 +1,14 @@
-export default function Homepage(){
-    return <h1>Header</h1>
+import { Link } from "react-router-dom";
+
+export default function Header(){
+    return (
+        <>
+        <h1>
+            <Link to ="/todo">
+                Header
+            </Link>
+        </h1>
+
+        </>
+        )
 }

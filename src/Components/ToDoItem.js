@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useTd } from "../context/tdcontext";
 import { useEffect } from "react";
+import Header from "./Header";
 
 export default function ToDoItem() {
     const {id} = useParams();
@@ -17,6 +18,7 @@ export default function ToDoItem() {
 
     return (
         <div>
+            <Header />
             <h2>{currentTask.title}</h2><p>Status {currentTask.completed ? "Completed" : "Pending"}</p>
             
             <button onClick={() => navigate(-1)}>Go Back</button>          

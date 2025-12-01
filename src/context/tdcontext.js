@@ -17,15 +17,11 @@ const initialState ={
     //u reduceru definisemo akcije koje cemo koristiti za menjanje state
     function reducer(state, action){
         switch(action.type){
-
             case "ADD_TODO": 
             return { ...state, todos: [...state.todos, action.payload] };
 
-
             case "Get_TODO":
                 return { ...state, currentTask: action.payload };
-
-                
 
             case "Delete_TODO":
                 return {
@@ -35,12 +31,9 @@ const initialState ={
                 };  
 
                 default:
-                throw new Error("Unknown action type");
-                    
+                throw new Error("Unknown action type");    
         } 
     }
-        
-
 
     function TdProvider({ children}) {
         const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
@@ -65,7 +58,10 @@ const initialState ={
             },[currentTask.id])
 
         //exportujemo tdprovider da bismo mogli da obavijemo app.js
-        return <tdcontext.Provider value={{todos, getTask, addTodo, deleteTodo, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
+        return (
+            <tdcontext.Provider value={{todos, getTask, addTodo, deleteTodo, currentTask, error, dispatch}}>
+                {children}
+            </tdcontext.Provider>)
     }
 
   function useTd(){
