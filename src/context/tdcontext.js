@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 
 const tdcontext = createContext();
@@ -42,7 +42,19 @@ const initialState ={
 
 
     function TdProvider({ children}) {
-    const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
+        const [{ todos, currentTask, error}, dispatch] = useReducer(reducer, initialState)
+        return <tdcontext.Provider value={{todos, currentTask, error, dispatch}}>{children}</tdcontext.Provider>
+
+
   }
+
+  function useTd(){
+    const context = useContext(tdcontext)
+    if (context === undefined)
+    throw new Error("TD Context was used outside the cities provider");
+  return context;
+  }
+
+  export {TdProvider, useTd}
 
   

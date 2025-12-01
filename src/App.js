@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { TdProvider }  from "./context/tdcontext";
 import Homepage from "./Pages/Homepage";
 import Todo from "./Pages/Todo";
 
@@ -6,6 +8,8 @@ import Todo from "./Pages/Todo";
 export default function App(){
     return (
     <BrowserRouter>
+    <TdProvider>
+
         <Routes>
             <Route index element={<Homepage />} />
 
@@ -15,5 +19,6 @@ export default function App(){
             </Route>
             
         </Routes>
+    </TdProvider>
     </BrowserRouter>)
 }
